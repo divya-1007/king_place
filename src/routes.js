@@ -33,32 +33,32 @@ import OrderList from './sections/UserDashboard/OrderList/OrderList';
 export default function Router() {
 
   const routes = useRoutes([
-    {
-      path: '/dashboard', element: <DashboardLayout />,
-      children: [
-        { element: <Navigate to="/dashboard/app" /> },
-        { path: 'app', element: <DashboardAppPage /> },
-        { path: 'user', element: <UserPage /> },
-        {path:'product',element:<AddProduct />},
-        { path: 'room', element: <ProductsPage /> },
-        { path: 'food', element: <Foodpage /> },
-        { path: 'wedding', element: <WeddingPage /> },
-        { path: 'edit/:id', element: <WeddingPageEdit /> },
-        { path: 'view/:id', element: <WeddingViewPage /> },
-        { path: 'blog', element: <BlogPage /> },
-      ],
-    },
-    {
-      path: '/userDashboard', element: <DashboardLayout />,
-      children: [
-        { element: <Navigate to="/userDashboard/app" /> },
-        { path: 'app', element: <DashboardAppPage /> },
-        { path: 'order_process/:id', element: <OrderListPage /> },
-        { path: 'orderLists', element: <OrderList /> },
-        { path:'addTo_cart',element:<ProductCart />},
-        { path: 'blog', element: <MainScreen /> },
-      ],
-    },
+    // {
+    //   path: '/dashboard', element: <DashboardLayout />,
+    //   children: [
+    //     { element: <Navigate to="/dashboard/app" /> },
+    //     { path: 'app', element: <DashboardAppPage /> },
+    //     { path: 'user', element: <UserPage /> },
+    //     {path:'product',element:<AddProduct />},
+    //     { path: 'room', element: <ProductsPage /> },
+    //     { path: 'food', element: <Foodpage /> },
+    //     { path: 'wedding', element: <WeddingPage /> },
+    //     { path: 'edit/:id', element: <WeddingPageEdit /> },
+    //     { path: 'view/:id', element: <WeddingViewPage /> },
+    //     { path: 'blog', element: <BlogPage /> },
+    //   ],
+    // },
+    // {
+    //   path: '/userDashboard', element: <DashboardLayout />,
+    //   children: [
+    //     { element: <Navigate to="/userDashboard/app" /> },
+    //     { path: 'app', element: <DashboardAppPage /> },
+    //     { path: 'order_process/:id', element: <OrderListPage /> },
+    //     { path: 'orderLists', element: <OrderList /> },
+    //     { path:'addTo_cart',element:<ProductCart />},
+    //     { path: 'blog', element: <MainScreen /> },
+    //   ],
+    // },
     {
       path: 'contact',
       element: <ContactUs />,
