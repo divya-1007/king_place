@@ -1,0 +1,34 @@
+.toast-message-sucess {
+    background: rgb(28, 197, 93);
+    color: #fff;
+    font-size: 20px;
+    /* width: 20vw; */
+    padding: 30px 20px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+
+.toast-message-error {
+    background: rgb(231, 38, 48);
+    color: #fff;
+    font-size: 20px;
+    /* width: 25vw; */
+    padding: 30px 20px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.css-ysycdn-MuiInputBase-root-MuiOutlinedInput-root {
+    color: #f3f5f8;
+    border: 1px solid #fff !important;
+    border-radius: 0.5rem;
+} 
+.css-znbc8-MuiInputBase-root-MuiOutlinedInput-root {
+    color: #f3f5f8;
+    border: 1px solid #fff !important;
+    border-radius: 0.5rem;
+}
+.css-n26ql7-MuiInputBase-input-MuiOutlinedInput-input{
+    color: #f3f5f8;
+}
