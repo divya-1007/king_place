@@ -178,7 +178,7 @@ export default function SignupForm() {
       </Stack>
 
       <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ my: 2 }}>
-      <FormControlLabel control={<Checkbox name="remember" label="Remember me" />} label="Remember me *"/>
+      {/* <FormControlLabel control={<Checkbox name="remember" label="Remember me" />} label="Remember me *"/> */}
       </Stack>
 
        <Stack

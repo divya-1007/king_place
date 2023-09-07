@@ -23,16 +23,16 @@ const StyledRoot = styled('div')(({ theme }) => ({
 
 const StyledSection = styled('div')(({ theme }) => ({
   width: '100%',
-  maxWidth: 980,
+  maxWidth: 1000,
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
-  boxShadow: theme.customShadows.card,
-  backgroundColor: theme.palette.background.default,
+  // boxShadow: theme.customShadows.card,
+  // backgroundColor: theme.palette.background.default,
 }));
 
 const StyledContent = styled('div')(({ theme }) => ({
-  maxWidth: 480,
+  maxWidth: 460,
   margin: 'auto',
   minHeight: '100vh',
   display: 'flex',
@@ -121,15 +121,11 @@ export default function LoginPage() {
             left: { xs: 16, sm: 24, md: 40 },
           }}
         />
-
+       {/* <img src="/images/ECommBlog.png" alt="login" height='100%' style={{px:2}} /> */}
         {mdUp && (
           <StyledSection>
-            {/* <Typography variant="h4" sx={{ px: 5, mt: 10, mb: 5 }}>
-              Hi, Welcome Data Warehouse
-            </Typography> */}
-            {/* <img src='/images/certificate.png' alt='login' /> */}
-            {/* <img src="/assets/illustrations/illustration_login.png" alt="login" /> */}
-            {/* <img src="/images/service.webp" alt="login" height='100%' style={{px:2}} /> */}
+         
+            <img src="/images/WebsiteImage.png" alt="login" height='100%' style={{px:2,opacity:'0.92',backgroundColor:'rgb(242 248 255)'}} />
           </StyledSection>
         )}
 
