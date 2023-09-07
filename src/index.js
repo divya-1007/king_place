@@ -8,7 +8,7 @@ import axios from 'axios';
 
 // ----------------------------------------------------------------------
 
-axios.defaults.baseURL = 'https://king-place-backend.onrender.com'
+axios.defaults.baseURL = 'https://king-place-backend.onrender.com/'
 const xhr = new XMLHttpRequest();
 xhr.withCredentials = true;
 const root = ReactDOM.createRoot(document.getElementById('root'));
