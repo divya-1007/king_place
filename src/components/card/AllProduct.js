@@ -44,7 +44,7 @@ export default function AllProduct() {
         <title> All Products | King Place </title>
       </Helmet>
 
-      <Container>
+      <Container maxWidth="lg">
       <Stack className="All_product"
           direction="column"
           // flexWrap="wrap-reverse"
