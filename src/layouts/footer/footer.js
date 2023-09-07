@@ -20,7 +20,7 @@ export default function Footer() {
         <Grid container spacing={5}>
         <Grid item xs={12} sm={4}>
           
-           <img src="/images/logo1.png" sx={{backgroundColor: 'white',color:'#fff',mb:1}}/>
+           <img src="/images/logo1.png" sx={{backgroundColor:'white',color:'#fff',mb:1,opacity:'0.92',backgroundColor:'rgb(242 248 255)'}}/>
             <Typography color="#ffffff8c"variant="h6" align="center" sx={{m:1,fontSize:10,}}>Continually productize with compeling dome packed with all elated in utilize website and creating supply</Typography>
           {/* </a> */}
           </Grid>

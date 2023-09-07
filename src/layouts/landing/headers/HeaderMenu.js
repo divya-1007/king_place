@@ -175,7 +175,7 @@ export default function HeaderMenu() {
       <img
         src="/images/logo1.png"
 
-        style={{marginLeft:'7rem',marginTop:'0.5rem',borderRadius:'5px',
+        style={{marginLeft:'3rem',marginTop:'0.5rem',borderRadius:'5px',
         opacity:'0.92',
         backgroundColor:'rgb(242 248 255)'}}
       />
