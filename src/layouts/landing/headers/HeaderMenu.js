@@ -184,18 +184,6 @@ export default function HeaderMenu() {
   const getMenuButtons = () => {
     return pages.map(({ label, href }) => {
       return (
-        //   <Button
-        //   {...{
-        //     key: label,
-        //     color: "inherit",
-        //     to: href,
-        //     style:{fontSize: 'medium',fontWeight: 'bold',width:'11%',color:'#000',opacity:'0.92',
-        //     backgroundColor:'rgba(249, 250, 251, 0.95)',margin:'5px'},
-        //     className: menuButton,
-        //   }}
-        // >
-        //   {label}
-        // </Button>
         <Link
         {...{
           to: href,

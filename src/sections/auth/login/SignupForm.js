@@ -88,10 +88,10 @@ export default function SignupForm() {
             password,
             captchaToken
         }
-      console.log("check" ,user);
+     
      await Postrequest('api/users/signup',user)
       .then((response)=>{
-
+        console.log("check" ,response);
         if(response.status){
           toast.success("Sucessfully Signup",{
             position: "top-center",
