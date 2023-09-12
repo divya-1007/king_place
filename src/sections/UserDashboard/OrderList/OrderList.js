@@ -232,7 +232,7 @@ export default function OrderList() {
 
 
                         <TableCell align="left" sx={{ color:"#ffffff"}}>
-                            {stage ? 'shipping' : 'complete'}
+                            {stage == 'shipping'? 'shipping' : 'complete'}
                           </TableCell>
 
                         <TableCell align="left" sx={{ color:"#ffffff"}}>{createdAt?.split('T')[0]}</TableCell>
