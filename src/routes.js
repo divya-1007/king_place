@@ -27,6 +27,7 @@ import ProductCart from './components/card/ProductCart';
 import OrderListPage from './sections/UserDashboard/OrderListPage';
 import MainScreen from './sections/UserDashboard/index';
 import OrderList from './sections/UserDashboard/OrderList/OrderList';
+import Homes from "./containers/HomeContainer";
 
 // ----------------------------------------------------------------------
 
@@ -58,6 +59,10 @@ export default function Router() {
         { path:'addTo_cart',element:<ProductCart />},
         { path: 'blog', element: <MainScreen /> },
       ],
+    },
+    {
+      path: 'home',
+      element: <Homes />,
     },
     {
       path: 'contact',

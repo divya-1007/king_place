@@ -1,5 +1,6 @@
 // @mui
 import { styled } from '@mui/material/styles';
+import { useState, useEffect } from "react";
 import { Badge } from '@mui/material';
 // component
 import Iconify from '../../../components/iconify';
@@ -8,7 +9,6 @@ import { filter } from 'lodash';
 import Cookies from 'js-cookie';
 // @mui
 import {Button} from "@mui/material";
-import { useEffect } from 'react';
 
 
 // ----------------------------------------------------------------------
@@ -37,12 +37,24 @@ const StyledRoot = styled('div')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function CartWidget({addToCart}) {
+  const existingCartDatas = Cookies.get("addToCart");
   function checkCount(addTo) {
+    if (addTo.length>0){
+    // console.log(addTo ,"addTo");
     let sum = 0;
     addTo.map((element) => {
       sum += element.count;
     });
     return sum;
+  }else if(existingCartDatas){
+  const addData = JSON?.parse(existingCartDatas);
+  let sum = 0;
+  addData.map((element) => {
+    sum += element.count;
+  });
+  return sum;
+  }
+   
   }
 
   const setCookieWithOneMonthExpiration = (name, value) => {
@@ -51,13 +63,7 @@ export default function CartWidget({addToCart}) {
     Cookies.set(name, JSON.stringify(value), { expires: expirationDate,secure:true,sameSite:'Strict',path:'/' });
   };
 
-  // useEffect(()=>{
-  //   console.log(addCartData ,"addCartData");
-  //   if(addCartData != null){
-  //     setCookieWithOneMonthExpiration('addToCart', addCartData);
-  //   }
- 
-  // } ,[addCartData])
+  
   
 
   return (
