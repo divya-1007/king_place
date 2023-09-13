@@ -23,17 +23,17 @@ const navConfig = [
   },
   {
     title: 'room',
-    path: '/dashboard/room',
+    path: '/dashboard/room_product',
     icon: icon('rooms'),
   },
   {
     title: 'food',
-    path: '/dashboard/food',
+    path: '/dashboard/food_product',
     icon: icon('reshotfood'),
   },
   {
     title: 'wedding',
-    path: '/dashboard/wedding',
+    path: '/dashboard/wedding_product',
     icon: icon('wedding'),
   },
   {
