@@ -13,15 +13,15 @@ import Footer from 'src/layouts/footer/footer';
 
 const exps = [
   {
-    label: 'Students',
+    label: 'Hotal',
     value: '10K+',
   },
   {
-    label: 'Quality Course',
+    label: 'Hotel Service',
     value: '20+',
   },
   {
-    label: 'Experience Mentors',
+    label: 'Visit Mentors',
     value: '10+',
   },
 ]
