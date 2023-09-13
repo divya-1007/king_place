@@ -19,25 +19,25 @@ export default function Footer() {
       <Container id='footer' maxWidth="lg">
         <Grid container spacing={5}>
         <Grid item xs={12} sm={4}>
-          
+         <a href="/" style={{textDecoration:'none',color:'white'}}>
            <img src="/images/logo1.png" style={{backgroundColor:'white',color:'#fff',mb:1,opacity:'0.92',backgroundColor:'rgb(242 248 255)'}}/>
-            <Typography color="#ffffff8c"variant="h6" align="center" sx={{m:1,fontSize:10,}}>Continually productize with compeling dome packed with all elated in utilize website and creating supply</Typography>
-          {/* </a> */}
+            <Typography color="#ffffff8c"variant="h6" align="start" sx={{m:1,fontSize:10,}}>Grand Palace Hotel Services Banquet facilities,Bar, Computer facility,Conference and meeting facilities,Disabled room,Fitness room,Sauna,Luggage storage,More items</Typography>
+          </a>
           </Grid>
           <Grid item xs={12} sm={3}>
             <Typography variant="h6" color="white" gutterBottom>
-              <a href="#homes" style={{textDecoration:'none',color:'white'}}>Company</a>
+              <a href="/" style={{textDecoration:'none',color:'white'}}>Home</a>
             </Typography>
             <Typography variant="h6"  gutterBottom>
-             <a href="#aboutUs" style={{textDecoration:'none',color:'white'}}>About Us</a>
+             <a href="/food" style={{textDecoration:'none',color:'white'}}>Food Orders</a>
             </Typography>
             <Typography variant="h6" color="white" gutterBottom>
-            <a href="#hero" style={{textDecoration:'none',color:'white'}}> Room Booking</a>
+            <a href="/gallary" style={{textDecoration:'none',color:'white'}}> Room Booking</a>
             </Typography>
           </Grid>
           <Grid item xs={12} sm={3}>
           <Typography variant="h6" color="white" gutterBottom>
-              <a href="#wedding" style={{textDecoration:'none',color:'white'}}>Wedding Booking</a>
+              <a href="/wedding" style={{textDecoration:'none',color:'white'}}>Wedding Booking</a>
             </Typography>
           <Typography variant="h6" color="white" gutterBottom>
              <Link to={'/privacyPolicy' } underline="none" style={{textDecoration:'none',color:'white'}} > Privacy Policy </Link>
@@ -54,7 +54,7 @@ export default function Footer() {
               123 Main Street, Anytown, USA
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Email: info@example.com
+              Email: king-place@gmail.com
             </Typography>
             <Typography variant="body2" color="text.secondary">
               Phone: +1 234 567 8901
@@ -62,16 +62,16 @@ export default function Footer() {
             <Typography variant="h6" color="white" gutterBottom>
               Follow Us
             </Typography>
-            <Link href="https://www.facebook.com/" >
+            <Link to="https://www.facebook.com/" >
               <Facebook />
             </Link>
             <Link
-              href="https://www.instagram.com/"
+              to="https://www.instagram.com/"
               sx={{ pl: 1, pr: 1 }}
             >
               <Instagram />
             </Link>
-            <Link href="https://www.twitter.com/" >
+            <Link to="https://www.twitter.com/" >
               <Twitter />
             </Link>
           </Grid>

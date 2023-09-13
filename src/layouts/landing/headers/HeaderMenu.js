@@ -23,11 +23,9 @@ import { styled } from "@mui/material/styles";
 
 const pages = [
   { label: "Home", href: "/" },
-  { label: "Room", href: "#hero" },
-  { label: "Gallary", href: "#gallary" },
-  { label: "Wedding", href: "#wedding" },
-  { label: "Food", href: "#foodContent" },
-  { label: "About", href: "#aboutUs" },
+  { label: "Room", href: "gallary" },
+  { label: "Wedding", href: "wedding" },
+  { label: "Food", href: "food" },
   { label: "Contact", href: "/contact" },
   { label: "Sign In", href: "/login" },
 ];

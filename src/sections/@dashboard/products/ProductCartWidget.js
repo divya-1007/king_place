@@ -39,8 +39,9 @@ const StyledRoot = styled('div')(({ theme }) => ({
 export default function CartWidget({addToCart}) {
   const existingCartDatas = Cookies.get("addToCart");
   function checkCount(addTo) {
-    if (addTo.length>0){
-    // console.log(addTo ,"addTo");
+    
+
+  if (addTo.length>0){
     let sum = 0;
     addTo.map((element) => {
       sum += element.count;
@@ -50,8 +51,10 @@ export default function CartWidget({addToCart}) {
   const addData = JSON?.parse(existingCartDatas);
   let sum = 0;
   addData.map((element) => {
+    console.log(element ,"existingCartDatas");
     sum += element.count;
   });
+  
   return sum;
   }
    
@@ -69,7 +72,7 @@ export default function CartWidget({addToCart}) {
   return (
     <StyledRoot>
       <Link to={'/all-product/cart'}>
-      <Badge showZero badgeContent={addToCart !=undefined ? checkCount(addToCart):0} color="error" max={99}>
+      <Badge showZero badgeContent={addToCart !=undefined || addToCart != 'NaN' ? checkCount(addToCart):0} color="error" max={99}>
         <Iconify icon="eva:shopping-cart-fill" width={24} height={24} />
       </Badge>
       </Link>

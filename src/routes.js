@@ -27,8 +27,10 @@ import ProductCart from './components/card/ProductCart';
 import OrderListPage from './sections/UserDashboard/OrderListPage';
 import MainScreen from './sections/UserDashboard/index';
 import OrderList from './sections/UserDashboard/OrderList/OrderList';
+import WeddingBlog from './components/card/wedding';
+import GallaryRoom from './components/card/gallary'
+import FoodService from './components/card/foodservice';
 // import Homes from "./containers/HomeContainer";
-
 // ----------------------------------------------------------------------
 
 export default function Router() {
@@ -64,6 +66,18 @@ export default function Router() {
     //   path: 'home',
     //   element: <Homes />,
     // },
+    {
+      path: 'food',
+      element: <FoodService />,
+    },
+    {
+      path: 'gallary',
+      element: <GallaryRoom />,
+    },
+    {
+      path: 'wedding',
+      element: <WeddingBlog />,
+    },
     {
       path: 'contact',
       element: <ContactUs />,

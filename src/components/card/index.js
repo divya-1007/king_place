@@ -1,8 +1,6 @@
-import React, { FC } from 'react'
-import useMediaQuery from '@mui/material/useMediaQuery'
-import { useTheme, styled } from '@mui/material/styles'
+import React from 'react'
 import Cards from './cards'
-import { Container,Grid,Paper, Card,CardHeader,CardMedia,CardContent,CardActions,Collapse, Button,Box, Typography } from '@mui/material';
+import {Grid,Box, Typography } from '@mui/material';
 
 const data = [
     {
@@ -43,44 +41,30 @@ const data = [
     },
   ]
 
-const StyledDots = styled('ul')(({ theme }) => ({
-  '&.slick-dots': {
-    position: 'absolute',
-    left: 0,
-    bottom: -20,
-    paddingLeft: theme.spacing(1),
-    textAlign: 'left',
-    '& li': {
-      marginRight: theme.spacing(2),
-      '&.slick-active>div': {
-        backgroundColor: theme.palette.primary.main,
-      },
-    },
-  },
-}))
-const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-    ...theme.typography.body2,
-    padding: theme.spacing(2),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  }));
+// const StyledDots = styled('ul')(({ theme }) => ({
+//   '&.slick-dots': {
+//     position: 'absolute',
+//     left: 0,
+//     bottom: -20,
+//     paddingLeft: theme.spacing(1),
+//     textAlign: 'left',
+//     '& li': {
+//       marginRight: theme.spacing(2),
+//       '&.slick-active>div': {
+//         backgroundColor: theme.palette.primary.main,
+//       },
+//     },
+//   },
+// }))
+// const Item = styled(Paper)(({ theme }) => ({
+//     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+//     ...theme.typography.body2,
+//     padding: theme.spacing(2),
+//     textAlign: 'center',
+//     color: theme.palette.text.secondary,
+//   }));
 
 export default function CardIndexs() {
-  const { breakpoints } = useTheme()
-  const matchMobileView = useMediaQuery(breakpoints.down('md'))
-//   sx={{
-    // fontSize: 'inherit',
-    // fontWeight: 'inherit',
-    // position: 'relative',
-    // color:'primary.main',
-    // '& svg': {
-    //   position: 'absolute',
-    //   top: -16,
-    //   right: -21,
-    //   width: { xs: 22, md: 30 },
-    //   height: 'auto',
-//     },
   return (
     <>
     <Box sx={{  background: 'rgb(250 247 247 / 33%)' ,   borderRadius: '49px'}}>

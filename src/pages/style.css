@@ -1,3 +1,4 @@
+
 .product_head{
     background: #001e3c;
     color: #ffffff;
@@ -108,15 +109,16 @@
 .custom-file-input::-webkit-file-upload-button {
   visibility: hidden;
 }
+
 .custom-file-input::before {
   content: 'Select some files';
   display: inline-block;
-  background: linear-gradient(top, #f9f9f9, #e3e3e3);
+  background: -webkit-radial-gradient(top, #f9f9f9, #e3e3e3);
   border-radius: 3px;
   padding: 0px 30px;
   outline: none;
   white-space: nowrap;
-  -webkit-user-select: none;
+  /* -webkit-user-select: none; */
   cursor: pointer;
   font-weight: bold;
   color:#5e646a;

@@ -13,8 +13,8 @@ import axios from 'axios';
 // ======================
 
 // ----------------------------------------------------------------------
-
-axios.defaults.baseURL = 'https://king-place-backend.onrender.com/'
+axios.defaults.baseURL = 'http://192.168.0.18:8000/'
+// axios.defaults.baseURL = 'https://king-place-backend.onrender.com/'
 const xhr = new XMLHttpRequest();
 xhr.withCredentials = true;
 const root = ReactDOM.createRoot(document.getElementById('root'));

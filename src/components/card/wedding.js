@@ -1,11 +1,11 @@
 import * as React from 'react';
-import {ImageList ,Grid} from '@mui/material';
+import {Grid} from '@mui/material';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
-import ListSubheader from '@mui/material/ListSubheader';
-import IconButton from '@mui/material/IconButton';
-import InfoIcon from '@mui/icons-material/Info';
-import { Link, RouterLink } from 'react-router-dom';
+// import ListSubheader from '@mui/material/ListSubheader';
+// import IconButton from '@mui/material/IconButton';
+// import InfoIcon from '@mui/icons-material/Info';
+import { Link } from 'react-router-dom';
 
 import './style.css'
 const itemDatas = [
@@ -97,7 +97,6 @@ const itemDatas = [
   
 
 export default function WeddingBlog({item}) {
-//  console.log(item);
     return(
       <Grid container columns={{ xs: 4, sm: 8, md: 12 }}>
         {itemDatas.map((item) => (

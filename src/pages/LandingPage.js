@@ -41,6 +41,7 @@ const exps = [
 var items = [
   '/images/banner3.jpg',
   '/images/banner1.jpg',
+  '/images/banner_3.jpg',
   '/images/banner2.jpg',
   '/images/banner5.jpg',
   '/images/banner2.jpg',
@@ -48,7 +49,8 @@ var items = [
   '/images/banner4.jpg',
   '/images/banner9.jpg',
   '/images/banner10.jpg',
-  '/images/slide_1.jpg'
+  '/images/slide_1.jpg',
+  '/images/banner.avif',
 ]
 
 var about = [
@@ -60,6 +62,8 @@ var about = [
   '/images/about1.jpg',
   '/images/about4.jpg',
   '/images/about3.jpg',
+  '/images/banner_3.jpg',
+  '/images/banner_5.jpg',
 ]
 
 var about1 = [
