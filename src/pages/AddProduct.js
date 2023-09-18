@@ -115,7 +115,7 @@ export default function AddProduct() {
         theme: "light",
       })
       setTimeout(function () {
-        navigate('/dashboard/'+productType, { replace: true });
+        navigate('/dashboard/'+productType+'_product', { replace: true });
         setLoading(false);
       }, 1000)
       setProductName("")

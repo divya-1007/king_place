@@ -39,9 +39,7 @@ const StyledRoot = styled('div')(({ theme }) => ({
 export default function CartWidget({addToCart}) {
   const existingCartDatas = Cookies.get("addToCart");
   function checkCount(addTo) {
-    
-
-  if (addTo.length>0){
+  if (addTo?.length>0){
     let sum = 0;
     addTo.map((element) => {
       sum += element.count;
