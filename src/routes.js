@@ -30,6 +30,7 @@ import OrderList from './sections/UserDashboard/OrderList/OrderList';
 import WeddingBlog from './components/card/wedding';
 import GallaryRoom from './components/card/gallary'
 import FoodService from './components/card/foodservice';
+import AdminOrderData from './pages/Orders';
 // import Homes from "./containers/HomeContainer";
 // ----------------------------------------------------------------------
 
@@ -48,6 +49,7 @@ export default function Router() {
         { path: 'wedding_product', element: <WeddingPage /> },
         { path: 'edit/:id', element: <WeddingPageEdit /> },
         { path: 'view/:id', element: <WeddingViewPage /> },
+        { path: 'orders', element: <AdminOrderData /> },
         { path: 'blog', element: <BlogPage /> },
       ],
     },

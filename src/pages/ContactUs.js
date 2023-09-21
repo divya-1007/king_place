@@ -1,8 +1,8 @@
-import * as React from 'react';
+import React, { useState, useEffect } from "react";
 import { Link as RouterLink } from 'react-router-dom';
 // @mui
 import './style.css';
-import { Grid, Box, Paper, ListItemAvatar, Button, Container, List, ListItem, TextField, Typography } from '@mui/material';
+import { Grid, Box,ListItemAvatar, Button, Container, List, ListItem, TextField, Typography } from '@mui/material';
 // Icon
 import Iconify from '../components/iconify';
 import DraftsIcon from '@mui/icons-material/Drafts';
@@ -10,6 +10,11 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneIcon from '@mui/icons-material/Phone';
 import SendIcon from '@mui/icons-material/Send';
 import Footer from 'src/layouts/footer/footer';
+import { toast } from "react-toastify";
+import Fade from "@mui/material/Fade";
+import { LoadingButton } from "@mui/lab";
+import CircularProgress from "@mui/material/CircularProgress";
+import { Postrequest } from "../apicall/index";
 
 const exps = [
   {
@@ -27,6 +32,105 @@ const exps = [
 ]
 
 export default function ContactUs() {
+  const [full_Name, setFull_Name] = useState("");
+  const [message, setMessage] = useState("");
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+  const handleClick = async (e) => {
+    e.preventDefault();
+    setLoading((prevLoading) => !prevLoading);
+
+    let empty = "";
+    if (!email) {
+      empty = "Email";
+    } else if (!full_Name) {
+      empty = "Full Name";
+    }else if(!message){
+      empty = "Message";
+    }
+    if (empty) {
+      toast(`Please provide a ${empty}`, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        className: "toast-message-error",
+        theme: "light",
+      });
+      return;
+    }
+
+
+    const user = {
+      email,
+      full_Name,
+      message
+    };
+    console.log(user);
+    await Postrequest("api/users/contact-us", user)
+      .then((response) => {
+        if (response.status) {
+          console.log(response.data.message);
+         
+          toast.success(`${response?.data?.message}`, {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            className: "toast-message-sucess",
+            theme: "light",
+          });
+          setTimeout(() => {
+            setLoading(false)
+            window.location.reload()
+            setEmail("");
+            setFull_Name("");
+            setMessage(""); 
+          }, 1000);
+          
+        }
+      })
+      .catch((error) => {
+        console.log(error?.response?.data, "aya");
+        if (error?.response?.data?.status === 412) {
+          toast.error(`${error?.response?.data?.message}`, {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            className: "toast-message-error",
+            theme: "light",
+          });
+          setTimeout(() => {
+            setLoading(false);
+          }, 3000);
+        } else {
+          toast.error(`${error?.response?.data?.message}`, {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            className: "toast-message-error",
+            theme: "light",
+          });
+          setTimeout(() => {
+            setLoading(false);
+          }, 3000);
+        }
+      });
+  };
   return (
     <>
       <Container maxWidth="lg">
@@ -192,34 +296,70 @@ export default function ContactUs() {
                     autoComplete="off"
                   >
                     <div>
-                      <TextField
+                      <TextField sx={{ alignItems:"center"}}
                         id="outlined-multiline-flexible"
-                        label="Full Name"
-                        multiline
+                        name='full_Name'
+                        onChange={(e) => setFull_Name(e.target.value)}
                         maxRows={4}
+                        defaultValue="Full Name"
+                        multiline
                       />
                       <br />
-                      <TextField 
+                      <TextField sx={{ alignItems:"center"}}
                         id="outlined-textarea"
                         type='email'
-                        label="Email"
+                        name='email'
+                        onChange={(e) => setEmail(e.target.value)}
                         placeholder="Placeholder"
+                        defaultValue="Email"
                         multiline
                       />
                       <br />
-                      <TextField
-                        
+                      <TextField sx={{ alignItems:"center"}}
+                        name='message'
+                        onChange={(e) => setMessage(e.target.value)}
                         id="outlined-multiline-static"
-                        label="Comment"
                         multiline
                         rows={4}
                         defaultValue="Comment.."
                       />
                       <br />
                     </div>
-                    <Button variant="contained" color="primary" endIcon={<SendIcon />} sx={{ display: 'flex', justifyContent: 'flex-end', marginLeft: 7 }}>
-                      submit
-                    </Button>
+                    <LoadingButton
+                        fullWidth
+                        size="large"
+                        type="submit"
+                        variant="contained"
+                        onClick={handleClick}
+                      >
+                        {loading ? (
+                          <Box sx={{ height: 40 }}>
+                            <Typography sx={{ padding: 1 }}>Please Wait........</Typography>
+                            <Fade
+                              in={loading}
+                              style={{
+                                transitionDelay: loading ? "500ms" : "0ms",
+                              }}
+                              unmountOnExit
+                            >
+                              <CircularProgress
+                                size={40}
+                                sx={{
+                                  color: "#ffffff",
+                                  position: "absolute",
+                                  zIndex: 1,
+                                  left: 1,
+                                  marginLeft: 5,
+                                  padding: 0.5,
+                                  top: 2,
+                                }}
+                              />
+                            </Fade>
+                          </Box>
+                        ) : (
+                          "Login"
+                        )}
+                      </LoadingButton>
                   </Box>
                 </Grid>
               </Grid>

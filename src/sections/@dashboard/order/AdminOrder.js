@@ -29,7 +29,7 @@ import Iconify from '../../../components/iconify';
 import Scrollbar from '../../../components/scrollbar';
 import { fCurrency } from "../../../utils/formatNumber";
 // sections
-import { UserListHead, UserListToolbar } from './index';
+import { UserListHead, UserListToolbar } from '../../UserDashboard/OrderList/index';
 // mock
 // import USERLIST from '../_mock/user';
 import  {Postrequest,GetRequest} from '../../../apicall/index';
@@ -70,13 +70,14 @@ function applySortFilter(array, comparator, query) {
     if (order !== 0) return order;
     return a[1] - b[1];
   });
+  // console.log(_user ,"_user"));
   if (query) {
     return filter(array, (_user) => _user.productName.toLowerCase().indexOf(query.toLowerCase()) !== -1);
   }
   return stabilizedThis.map((el) => el[0]);
 }
 
-export default function OrderList() {
+export default function AdminOrder() {
   const [opens, setOpens] = useState(false);
 
   const [page, setPage] = useState(0);
@@ -93,11 +94,11 @@ export default function OrderList() {
 
   const [ordersData, setOrdersData] = useState([])
   const [singleOrder, setSingleOrder] = useState('')
-
+console.log(filterName ,"Check Data");
   const getUsers = async (token) => { 
     const user = localStorage.getItem('user')
    
-    await GetRequest('api/orders/getOrder?type='+JSON.parse(user)?._id,token)
+    await GetRequest('api/orders/getOrder?type=All')
    .then((response)=>{
     if(response?.data){
     setOrdersData(response?.data?.orderList)
@@ -132,7 +133,7 @@ export default function OrderList() {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = ordersData.map((n) => n.firstName);
+      const newSelecteds = ordersData.map((n) => n.productName);
       setSelected(newSelecteds);
       return;
     }
@@ -181,13 +182,13 @@ export default function OrderList() {
   return (
     <>
       <Helmet>
-        <title> User |King Palace Hotal </title>
+        <title> Order |King Palace Hotal </title>
       </Helmet>
 
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
-            User
+            Order
           </Typography>
         </Stack>
         {opens == false ? 

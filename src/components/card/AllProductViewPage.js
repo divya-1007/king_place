@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import {
   Container,
   Stack,
+  Typography,
+  Box,
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { useNavigate, useParams } from "react-router-dom";
@@ -16,10 +18,10 @@ import {
   ProductFilterSidebar,
 } from "../../sections/@dashboard/products";
 import AllProductView from "./AllProductView"
-
-import { toast } from "react-toastify";
+import Fade from "@mui/material/Fade";
+import CircularProgress from "@mui/material/CircularProgress";
 import useResponsive from '../../hooks/useResponsive';
-import './style.css'
+import './style.css';
 // mock
 import {GetRequest } from "../../apicall/index";
 
@@ -31,7 +33,7 @@ export default function AllProductViewPage({ProductType}) {
   const navigate = useNavigate();
   const [openFilter, setOpenFilter] = useState(false);
   const [productData, setProductData] = useState([]);
-
+  const [loading, setLoading] = useState(false);
   const handleOpenFilter = () => {
     setOpenFilter(true);
   };
@@ -63,6 +65,7 @@ export default function AllProductViewPage({ProductType}) {
     await GetRequest("api/product/all-product?type="+type)
     .then((response) => {
       if (response?.data) {
+        setLoading((prevLoading) => !prevLoading);
         setProductData(response?.data?.productData);
         setOpenFilter(false);
       }
@@ -121,7 +124,38 @@ export default function AllProductViewPage({ProductType}) {
             {/* <ProductSort /> */}
           </Stack>
         </Stack>
-        <AllProductView products={productData}/>
+        {productData.length>1?<AllProductView products={productData}/>
+        : <>
+          <LoadingButton  fullWidth
+                        size="large"
+                        type="submit"
+                        variant="contained"><Box sx={{ height: 40 }}>
+            <Typography sx={{ padding: 1 }}>Please Wait........</Typography>
+            <Fade
+              in={loading}
+              style={{
+                transitionDelay: loading ? "500ms" : "0ms",
+              }}
+              unmountOnExit
+            >
+              <CircularProgress
+                size={40}
+                sx={{
+                  color: "#ffffff",
+                  position: "absolute",
+                  zIndex: 1,
+                  left: 1,
+                  // alignItems:'center',
+                  marginLeft: 20,
+                  padding: 0.5,
+                  top: 2,
+                }}
+              />
+            </Fade>
+          </Box></LoadingButton>
+        </>
+        }
+       
           <LoadingButton  sx={{ background: "#001e3c", mt:5 ,p:2 ,color:'#ffffff',spacing:3 }}
         size="large"
         variant="contained" onClick={handelPrivousPage}>privous</LoadingButton>

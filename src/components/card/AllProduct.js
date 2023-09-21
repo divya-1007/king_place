@@ -80,7 +80,6 @@ export default function AllProduct() {
               </div>
           </Paper>
         ))}
-       
       </Carousel>
       </Stack>
         <AllProductViewPage  ProductType={setProductType} />
