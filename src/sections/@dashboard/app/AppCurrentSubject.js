@@ -25,7 +25,7 @@ const StyledChartWrapper = styled('div')(({ theme }) => ({
     height: LEGEND_HEIGHT,
     alignContent: 'center',
     position: 'relative !important',
-    borderTop: `solid 1px ${theme.palette.divider}`,
+    // borderTop: `solid 1px ${theme.palette.divider}`,
     top: `calc(${CHART_HEIGHT - LEGEND_HEIGHT}px) !important`,
   },
 }));
@@ -41,6 +41,7 @@ AppCurrentSubject.propTypes = {
 };
 
 export default function AppCurrentSubject({ title, subheader, chartData, chartColors, chartLabels, ...other }) {
+  // console.log(chartColors ,"chartColors");
   const chartOptions = useChart({
     stroke: { width: 2 },
     fill: { opacity: 0.48 },

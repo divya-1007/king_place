@@ -54,8 +54,9 @@ export default function DashboardAppPage() {
   }, []);
 
     
-  const getProduct = async (token) => {
-    await GetRequest(`api/product/dashboard`, token)
+  const getProduct = async (token,items) => {
+    if(items?.isadmin === true){
+      await GetRequest(`api/product/dashboard?type=all`, token)
       .then((response) => {
         if (response?.data) {
           setProduct(response?.data?.DashBoardData);
@@ -64,13 +65,27 @@ export default function DashboardAppPage() {
       .catch((error) => {
         console.log(error);
       });
+    }else if(items?.isadmin === false){
+      await GetRequest(`api/product/dashboard?type=${items?._id}`, token)
+      .then((response) => {
+        if (response?.data) {
+          console.log();
+          setProduct(response?.data?.DashBoardData);
+        } 
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    }
+   
   };
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem("token"));
-    getProduct(token);
+    const items = JSON.parse(localStorage.getItem('user'));
+    getProduct(token ,items);
   }, []);
   
-console.log(product ,"kdvcd");
+console.log(product ,"product");
   function changeUpperCase(UserName) {
     const yourString = UserName
     const firstLetterCapital = yourString.charAt(0).toUpperCase();
@@ -78,7 +93,6 @@ console.log(product ,"kdvcd");
     const modifiedString = firstLetterCapital + restOfStringLowercase;
     return modifiedString
     }
-    console.log(product?.latestOrder ,"product?.latestOrder");
 
   return (
     <>
@@ -99,60 +113,61 @@ console.log(product ,"kdvcd");
           </Grid>
         
           <Grid item xs={12} sm={6} md={4}>
-            <AppWidgetSummary title="Total Orders" total={product?.UserCount} color="info" icon={'ant-design:shopping-cart'} />
+            <AppWidgetSummary title="Total Orders" total={product?.TotalOrder} color="info" icon={'ant-design:shopping-cart'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={4}>
-            <AppWidgetSummary title="Total Items" total={product?.ProductCount} color="warning" icon={'ant-design:shop'} />
+            <AppWidgetSummary title="Total Product" total={product?.ProductCount} color="warning" icon={'ant-design:shop'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={4}>
-            <AppWidgetSummary title="Total Wedding Items" total={product?.WeddingCount} sx={{color: '#22585f',backgroundColor:' #c2f8ff'}} icon={'emojione:wedding'} />
+            <AppWidgetSummary title="Total Wedding Booking Items" total={product?.WeddingCount} sx={{color: '#22585f',backgroundColor:' #c2f8ff'}} icon={'emojione:wedding'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={4}>
-            <AppWidgetSummary title="Total Room" total={product?.RoomCount} color="error" icon={'mdi:guest-room'} />
+            <AppWidgetSummary title="Total Room Booking Items" total={product?.RoomCount} color="error" icon={'mdi:guest-room'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={4}>
-            <AppWidgetSummary title="Total Food Items" total={product?.FoodCount} sx={{color: '#103996',backgroundColor:' #b6e2ff'}} icon={'wpf:dining-room'} />
+            <AppWidgetSummary title="Total Food Order Items" total={product?.FoodCount} sx={{color: '#103996',backgroundColor:' #b6e2ff'}} icon={'wpf:dining-room'} />
           </Grid>
 
           <Grid item xs={12} md={6} lg={8}>
             <AppWebsiteVisits sx={{backgroundColor: '#001e3c',color:'#ffffff',border: '2px solid #fff'}}
-              title="Website Total User Visits"
+              title="Website Total User ,Product and Order"
               subheader="(+43%) than last year"
               chartLabels={[
-                '01/01/2003',
-                '02/01/2003',
-                '03/01/2003',
-                '04/01/2003',
-                '05/01/2003',
-                '06/01/2003',
-                '07/01/2003',
-                '08/01/2003',
-                '09/01/2003',
-                '10/01/2003',
-                '11/01/2003',
+                '01/01/'+new Date().getFullYear(),
+                '02/01/'+new Date().getFullYear(),
+                '03/01/'+new Date().getFullYear(),
+                '04/01/'+new Date().getFullYear(),
+                '05/01/'+new Date().getFullYear(),
+                '06/01/'+new Date().getFullYear(),
+                '07/01/'+new Date().getFullYear(),
+                '08/01/'+new Date().getFullYear(),
+                '09/01/'+new Date().getFullYear(),
+                '10/01/'+new Date().getFullYear(),
+                '11/01/'+new Date().getFullYear(),
+                '12/01/'+new Date().getFullYear(),
               ]}
               chartData={[
                 {
-                  name: 'Team A',
+                  name: 'Users',
                   type: 'column',
                   fill: 'solid',
-                  data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30],
+                  data: product?.ChartUsersData,
                 },
                 {
-                  name: 'Team B',
+                  name: 'Product',
                   type: 'area',
                   fill: 'gradient',
-                  data: [44, 55, 41, 67, 22, 43, 21, 41, 56, 27, 43],
+                  data: product?.ChartProductData,
                 },
                 {
-                  name: 'Team C',
+                  name: 'Orders',
                   type: 'line',
                   fill: 'solid',
-                  data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39],
+                  data: product?.ChartOrderData,
                 },
               ]}
             />
@@ -160,11 +175,10 @@ console.log(product ,"kdvcd");
 
           <Grid item xs={12} md={6} lg={4}>
             <AppCurrentVisits sx={{backgroundColor: '#001e3c',color:'#ffffff',border: '2px solid #fff'}}
-              title="Total Product"
+              title="Total Orders Progress"
               chartData={[
-                { label: 'Room', value: product?.RoomCount },
-                { label: 'Wedding', value: product?.WeddingCount },
-                { label: 'Food', value: product?.FoodCount },
+                { label: 'Shipping', value: product?.OrderShipping },
+                { label: 'Complete', value: product?.OrderComplete },
               ]}
               chartColors={[
                 theme.palette.success.main,
@@ -175,22 +189,6 @@ console.log(product ,"kdvcd");
           </Grid>
 
           <Grid item xs={12} md={6} lg={8}>
-            {/* <AppConversionRates sx={{backgroundColor: '#001e3c',color:'#ffffff',border: '2px solid #fff'}}
-              title="Conversion Rates"
-              subheader="(+43%) than last year"
-              chartData={[
-                { label: 'Italy', value: 400 },
-                { label: 'Japan', value: 430 },
-                { label: 'China', value: 448 },
-                { label: 'Canada', value: 470 },
-                { label: 'France', value: 540 },
-                { label: 'Germany', value: 580 },
-                { label: 'South Korea', value: 690 },
-                { label: 'Netherlands', value: 1100 },
-                { label: 'United States', value: 1200 },
-                { label: 'United Kingdom', value: 1380 },
-              ]}
-            /> */}
             <AppNewsUpdate sx={{backgroundColor: '#001e3c',color:'#ffffff',border: '2px solid #fff'}}
               title="Latest User Update"
               // list={[product?.latestUser].map((_, index) => ({
@@ -207,13 +205,18 @@ console.log(product ,"kdvcd");
           <Grid item xs={12} md={6} lg={4}>
             <AppCurrentSubject sx={{backgroundColor: '#001e3c',color:'#ffffff',border: '2px solid #fff'}}
               title="User Growth"
-              chartLabels={['English', 'History', 'Physics', 'Geography', 'Chinese', 'Math']}
-              chartData={[
-                { name: 'Series 1', data: [80, 50, 30, 40, 100, 20] },
-                { name: 'Series 2', data: [20, 30, 40, 80, 20, 80] },
-                { name: 'Series 3', data: [44, 76, 78, 13, 43, 10] },
+              chartLabels={['01/01/'+new Date().getFullYear(),
+              '03/01/'+new Date().getFullYear(),
+              '05/01/'+new Date().getFullYear(),
+              '07/01/'+new Date().getFullYear(),
+              '09/01/'+new Date().getFullYear(),
+              '011/01/'+new Date().getFullYear(),
               ]}
-              chartColors={[...Array(6)].map(() => theme.palette.text.secondary)}
+              chartData={[
+                { name: 'User varify', data: product?.Users2 },
+                { name: 'User Not Varify', data: product?.Users1 },
+              ]}
+              chartColors={[...Array(6)].map(() => '#fff')}
             />
           </Grid>
 
@@ -248,10 +251,11 @@ console.log(product ,"kdvcd");
                 time: faker.date.past(),
               }))}
             />
+            
           </Grid>
           <Grid item xs={12} md={6} lg={8}>
             <AppNewsUpdate sx={{backgroundColor: '#001e3c',color:'#ffffff',border: '2px solid #fff'}}
-              title="Latest Items Update"
+              title="Latest Product Items Update"
               // list={product?.latestItem.map((_, index) => ({
               //   id: faker.datatype.uuid(),
               //   title: faker.name.jobTitle(),
@@ -264,7 +268,7 @@ console.log(product ,"kdvcd");
           </Grid>
 
           <Grid item xs={12} md={6} lg={4}>
-            <AppOrderTimeline sx={{backgroundColor: '#001e3c',color:'#ffffff',border: '2px solid #fff'}}
+            {/* <AppOrderTimeline sx={{backgroundColor: '#001e3c',color:'#ffffff',border: '2px solid #fff'}}
               title="Items Growth"
               list={[...Array(5)].map((_, index) => ({
                 id: faker.datatype.uuid(),
@@ -278,7 +282,20 @@ console.log(product ,"kdvcd");
                 type: `order${index + 1}`,
                 time: faker.date.past(),
               }))}
+            /> */}
+              <AppConversionRates sx={{backgroundColor: '#001e3c',color:'#ffffff',border: '2px solid #fff'}}
+              title="Data Rates"
+              subheader="(+43%) than last year"
+              chartData={[
+                { label: 'User', value: product?.UserCount },
+                { label: 'Product', value: product?.ProductCount },
+                { label: 'Order', value: product?.TotalOrder },
+                { label: 'Room Items', value: product?.WeddingCount},
+                { label: 'Food Items', value: product?.RoomCount},
+                { label: 'Wedding Items', value: product?.FoodCount },
+              ]}
             />
+            
           </Grid>
           {/* <Grid item xs={12} md={6} lg={8}>
             <AppTasks sx={{backgroundColor: '#001e3c',color:'#ffffff',border: '2px solid #fff'}}
@@ -324,51 +341,54 @@ console.log(product ,"kdvcd");
         :
         <Grid container spacing={3}>
         <Grid item xs={12} sm={6} md={4}>
-          <AppWidgetSummary title="Total User" total={10} color="success" icon={'ant-design:usergroup-add'} />
+          {/* <AppWidgetSummary title="Total Room Booking" total={product?.clientroom?product?.clientroom:0} color="success" icon={'ant-design:usergroup-add'} /> */}
+          <AppWidgetSummary title="Total Room Booking" total={product?.clientroom ?product?.clientroom:0} color="success" icon={'ant-design:shopping-cart'} />
+
         </Grid>
       
         <Grid item xs={12} sm={6} md={4}>
-          <AppWidgetSummary title="Total Orders" total={10} color="info" icon={'ant-design:shopping-cart'} />
+          <AppWidgetSummary title="Total Food Orders" total={product?.clientfood?product?.clientfood:Number(1) } color="info" icon={'ant-design:shopping-cart'} />
         </Grid>
 
         <Grid item xs={12} sm={6} md={4}>
-          <AppWidgetSummary title="Total Items" total={10} color="warning" icon={'ant-design:shop'} />
+          <AppWidgetSummary title="Total Wedding Booking" total={product?.clientwedding?product?.clientwedding:Number(1) } color="warning" icon={'ant-design:shopping-cart'} />
         </Grid>
         <Grid item xs={12} md={6} lg={8}>
             <AppWebsiteVisits sx={{backgroundColor: '#001e3c',color:'#ffffff',border: '2px solid #fff'}}
-              title="Website Total User Visits"
+              title="Website Orders monthly"
               subheader="(+43%) than last year"
               chartLabels={[
-                '01/01/2003',
-                '02/01/2003',
-                '03/01/2003',
-                '04/01/2003',
-                '05/01/2003',
-                '06/01/2003',
-                '07/01/2003',
-                '08/01/2003',
-                '09/01/2003',
-                '10/01/2003',
-                '11/01/2003',
+                '01/01/'+new Date().getFullYear(),
+                '02/01/'+new Date().getFullYear(),
+                '03/01/'+new Date().getFullYear(),
+                '04/01/'+new Date().getFullYear(),
+                '05/01/'+new Date().getFullYear(),
+                '06/01/'+new Date().getFullYear(),
+                '07/01/'+new Date().getFullYear(),
+                '08/01/'+new Date().getFullYear(),
+                '09/01/'+new Date().getFullYear(),
+                '10/01/'+new Date().getFullYear(),
+                '11/01/'+new Date().getFullYear(),
+                '12/01/'+new Date().getFullYear(),
               ]}
               chartData={[
                 {
-                  name: 'Team A',
+                  name: 'Food Orders',
                   type: 'column',
                   fill: 'solid',
-                  data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30],
+                  data: product?.monthlyFoodCounts,
                 },
                 {
-                  name: 'Team B',
+                  name: 'Wedding Order',
                   type: 'area',
                   fill: 'gradient',
-                  data: [44, 55, 41, 67, 22, 43, 21, 41, 56, 27, 43],
+                  data: product?.monthlyWeddingCounts,
                 },
                 {
-                  name: 'Team C',
+                  name: 'Room Orders',
                   type: 'line',
                   fill: 'solid',
-                  data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39],
+                  data: product?.monthlyRoomCounts,
                 },
               ]}
             />
@@ -376,11 +396,11 @@ console.log(product ,"kdvcd");
 
           <Grid item xs={12} md={6} lg={4}>
             <AppCurrentVisits sx={{backgroundColor: '#001e3c',color:'#ffffff',border: '2px solid #fff'}}
-              title="Total Product"
+              title="Total Orders"
               chartData={[
-                { label: 'Room', value: product?.RoomCount },
-                { label: 'Wedding', value: product?.WeddingCount },
-                { label: 'Food', value: product?.FoodCount },
+                { label: 'Room', value: product?.clientroom?product?.clientroom :0 },
+                { label: 'Wedding', value: product?.clientwedding? product?.clientwedding:0},
+                { label: 'Food', value: product?.clientfood?product?.clientfood:0 },
               ]}
               chartColors={[
                 theme.palette.success.main,

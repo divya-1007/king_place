@@ -59,7 +59,6 @@ export default function AppNewsUpdate({ title, subheader, list, ...other }) {
 // };
 
 function NewsItem({ news ,newsData}) {
-  console.log(newsData,"news",news);
   return (
     <>
     {news ?

@@ -31,7 +31,6 @@ AppWidgetSummary.propTypes = {
 };
 
 export default function AppWidgetSummary({ title, total, icon, color = 'primary', sx, ...other }) {
-  console.log(color);
   return (
     <Card
       sx={{
